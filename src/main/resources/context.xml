@@ -2,11 +2,18 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.springframework.org/schema/beans
-            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
-
+            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+        default-init-method="turnLightOn"
+        default-destroy-method="turnLightOff"
+>
     <bean id="stage" class="sia.example.contest.Stage"
           factory-method="getInstance"> <!-- СТАТИЧЕСКИЙ метод для создания контруктора -->
     </bean>
+
+    <bean id="auditorium" class="sia.example.contest.Auditorium"
+          init-method="turnLightOn"
+          destroy-method="turnLightOff"
+    />
 
     <bean id="duke"
         class="sia.example.contest.Juggler">
@@ -19,5 +26,18 @@
         <constructor-arg value="15"/>
         <constructor-arg ref="comeAlong"/>
     </bean>
+
+    <bean id="kenny" class="sia.example.contest.Instrumentalist">
+        <property name="song" value="Jingle Bells"/>
+        <property name="instrument">
+<!--            внутренний компонент, уникальный экземпляр-->
+            <bean class="sia.example.contest.Saxophone"/>
+        </property>
+<!--        <property name="instrument" ref="piano"/>-->
+
+    </bean>
+
+    <bean id="saxophone" class="sia.example.contest.Saxophone"/>
+    <bean id="piano" class="sia.example.contest.Piano"/>
 
 </beans>
