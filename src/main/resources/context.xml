@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
         default-init-method="turnLightOn"
@@ -24,7 +24,10 @@
 
     <bean id="poeticDuke" class="sia.example.contest.PoeticJuggler">
         <constructor-arg value="15"/>
-        <constructor-arg ref="comeAlong"/>
+<!--        <constructor-arg ref="comeAlong"/>-->
+        <constructor-arg>
+            <bean class="sia.example.contest.ComeAlong"/>
+        </constructor-arg>
     </bean>
 
     <bean id="kenny" class="sia.example.contest.Instrumentalist">
@@ -34,10 +37,37 @@
             <bean class="sia.example.contest.Saxophone"/>
         </property>
 <!--        <property name="instrument" ref="piano"/>-->
-
     </bean>
 
     <bean id="saxophone" class="sia.example.contest.Saxophone"/>
     <bean id="piano" class="sia.example.contest.Piano"/>
 
+    <bean id="hank" class="sia.example.contest.OneManBand">
+<!--        <property name="instruments">-->
+<!--        <property name="instrumentMap">-->
+        <property name="instrumentsProp">
+<!-- коллекции           -->
+<!--            <list>-->
+<!--                <ref bean="guitar"/>-->
+<!--                <ref bean="cymbal"/>-->
+<!--                <ref bean="harmonica"/>-->
+<!--            </list>-->
+<!--            <set>-->
+<!--                <ref bean="guitar"/>-->
+<!--                <ref bean="cymbal"/>-->
+<!--                <ref bean="harmonica"/>-->
+<!--            </set>-->
+<!-- отображение           -->
+<!--            <map>-->
+<!--                <entry key="GUITAR" value-ref="guitar"/>-->
+<!--                <entry key="CYMBAL" value-ref="cymbal"/>-->
+<!--                <entry key="HARMONICA" value-ref="harmonica"/>-->
+<!--            </map>-->
+            <props>
+                <prop key="GUITAR">STRUM STRUM STRUM</prop>
+                <prop key="CYMBAL">CRASH CRASH CRASH</prop>
+                <prop key="HARMONICA">HUM HUM HUM</prop>
+            </props>
+        </property>
+    </bean>
 </beans>
