@@ -21,10 +21,10 @@ public class OneManBand implements Performer{
 //        }
 
         // обработка отображений
-//        for (String key: instrumentMap.keySet()) {
-//            System.out.println(key + " : ");
-//            Instrument instrument = instrumentMap.get(key);
-//            instrument.play();
+        for (String key: instrumentMap.keySet()) {
+            System.out.println(key + " : ");
+            Instrument instrument = instrumentMap.get(key);
+            instrument.play();
 
         // обработка свойств
 

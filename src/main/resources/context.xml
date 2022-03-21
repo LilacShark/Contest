@@ -70,4 +70,31 @@
             </props>
         </property>
     </bean>
+
+    <!--  3.1  наследование от общего предка с переопределением свойства-->
+    <bean id="baseSaxophonist" class="sia.example.contest.Instrumentalist"
+          abstract="true">
+        <property name="instrument" ref="saxophone"/>
+        <property name="song" value="Jingle Bells"/>
+    </bean>
+
+    <bean id="kenny" parent="baseSaxophonist"/>
+    <bean id="david" parent="baseSaxophonist"/>
+
+    <bean id="frank" parent="baseSaxophonist">
+        <property name="song" value="Dancing monkey"/>
+    </bean>
+
+    <bean id="basePerformer" abstract="true">
+        <property name="song" value="Desolated"/>
+    </bean>
+    <bean id="taylor" class="sia.example.contest.Vocalist"
+          parent="basePerformer"/>
+    <bean id="steve" class="sia.example.contest.Instrumentalist"
+          parent="basePerformer">
+        <property name="instrument" ref="guitar"/>
+    </bean>
+
+
+
 </beans>
