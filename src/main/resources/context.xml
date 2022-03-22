@@ -42,10 +42,10 @@
     <bean id="saxophone" class="sia.example.contest.Saxophone"/>
     <bean id="piano" class="sia.example.contest.Piano"/>
 
-    <bean id="hank" class="sia.example.contest.OneManBand">
+<!--    <bean id="hank" class="sia.example.contest.OneManBand">-->
 <!--        <property name="instruments">-->
 <!--        <property name="instrumentMap">-->
-        <property name="instrumentsProp">
+<!--        <property name="instrumentsProp">-->
 <!-- коллекции           -->
 <!--            <list>-->
 <!--                <ref bean="guitar"/>-->
@@ -63,13 +63,13 @@
 <!--                <entry key="CYMBAL" value-ref="cymbal"/>-->
 <!--                <entry key="HARMONICA" value-ref="harmonica"/>-->
 <!--            </map>-->
-            <props>
-                <prop key="GUITAR">STRUM STRUM STRUM</prop>
-                <prop key="CYMBAL">CRASH CRASH CRASH</prop>
-                <prop key="HARMONICA">HUM HUM HUM</prop>
-            </props>
-        </property>
-    </bean>
+<!--            <props>-->
+<!--                <prop key="GUITAR">STRUM STRUM STRUM</prop>-->
+<!--                <prop key="CYMBAL">CRASH CRASH CRASH</prop>-->
+<!--                <prop key="HARMONICA">HUM HUM HUM</prop>-->
+<!--            </props>-->
+<!--        </property>-->
+<!--    </bean>-->
 
     <!--  3.1  наследование от общего предка с переопределением свойства-->
     <bean id="baseSaxophonist" class="sia.example.contest.Instrumentalist"
@@ -78,7 +78,7 @@
         <property name="song" value="Jingle Bells"/>
     </bean>
 
-    <bean id="kenny" parent="baseSaxophonist"/>
+<!--    <bean id="kenny" parent="baseSaxophonist"/>-->
     <bean id="david" parent="baseSaxophonist"/>
 
     <bean id="frank" parent="baseSaxophonist">
@@ -90,10 +90,25 @@
     </bean>
     <bean id="taylor" class="sia.example.contest.Vocalist"
           parent="basePerformer"/>
+    <bean id="guitar" class="sia.example.contest.Guitar"/>
     <bean id="steve" class="sia.example.contest.Instrumentalist"
           parent="basePerformer">
         <property name="instrument" ref="guitar"/>
     </bean>
+
+    <bean id="harry" class="sia.example.contest.Magician">
+        <property name="magicBox" ref="magicBox"/>
+        <property name="magicWords" value="Avada Kedavra"/>
+    </bean>
+
+    <bean id="magicBox" class="sia.example.contest.MagicBoxImpl">
+        <replaced-method
+            name="getContest"
+            replacer="tigerReplacer"/>
+    </bean>
+
+    <bean id="tigerReplacer" class="sia.example.contest.TigerReplacer"/>
+
 
 
 

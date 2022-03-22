@@ -16,12 +16,13 @@ public class Program {
 
 
 //        performer = (Performer) context.getBean("duke");
-//        performer.perform();
 
 //        performer = (Performer) context.getBean("poeticDuke");
-//        performer.perform();
 
-        performer = (Performer) context.getBean("kenny");
+//        performer = (Performer) context.getBean("kenny");
+        performer = (Performer) context.getBean("harry");
+
+
         performer.perform();
 
 
