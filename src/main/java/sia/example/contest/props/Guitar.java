@@ -1,4 +1,4 @@
-package sia.example.contest;
+package sia.example.contest.props;
 
 public class Guitar implements Instrument {
 

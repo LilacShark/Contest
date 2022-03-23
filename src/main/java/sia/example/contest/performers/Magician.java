@@ -1,4 +1,7 @@
-package sia.example.contest;
+package sia.example.contest.performers;
+
+import sia.example.contest.props.MagicBox;
+import sia.example.contest.PerformanceException;
 
 public class Magician implements Performer {
 

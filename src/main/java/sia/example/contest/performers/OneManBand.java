@@ -1,4 +1,7 @@
-package sia.example.contest;
+package sia.example.contest.performers;
+
+import sia.example.contest.props.Instrument;
+import sia.example.contest.PerformanceException;
 
 import java.util.Collection;
 import java.util.Map;

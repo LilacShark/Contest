@@ -16,33 +16,33 @@
     />
 
     <bean id="duke"
-        class="sia.example.contest.Juggler">
+        class="sia.example.contest.performers.Juggler">
         <constructor-arg value="15"/>
     </bean>
 
-    <bean id="comeAlong" class="sia.example.contest.ComeAlong"/>
+    <bean id="comeAlong" class="sia.example.contest.props.ComeAlong"/>
 
-    <bean id="poeticDuke" class="sia.example.contest.PoeticJuggler">
+    <bean id="poeticDuke" class="sia.example.contest.performers.PoeticJuggler">
         <constructor-arg value="15"/>
 <!--        <constructor-arg ref="comeAlong"/>-->
         <constructor-arg>
-            <bean class="sia.example.contest.ComeAlong"/>
+            <bean class="sia.example.contest.props.ComeAlong"/>
         </constructor-arg>
     </bean>
 
-    <bean id="kenny" class="sia.example.contest.Instrumentalist">
+    <bean id="kenny" class="sia.example.contest.performers.Instrumentalist">
         <property name="song" value="Jingle Bells"/>
         <property name="instrument">
 <!--            внутренний компонент, уникальный экземпляр-->
-            <bean class="sia.example.contest.Saxophone"/>
+            <bean class="sia.example.contest.props.Saxophone"/>
         </property>
 <!--        <property name="instrument" ref="piano"/>-->
     </bean>
 
-    <bean id="saxophone" class="sia.example.contest.Saxophone"/>
-    <bean id="piano" class="sia.example.contest.Piano"/>
+    <bean id="saxophone" class="sia.example.contest.props.Saxophone"/>
+    <bean id="piano" class="sia.example.contest.props.Piano"/>
 
-<!--    <bean id="hank" class="sia.example.contest.OneManBand">-->
+<!--    <bean id="hank" class="sia.example.contest.performers.OneManBand">-->
 <!--        <property name="instruments">-->
 <!--        <property name="instrumentMap">-->
 <!--        <property name="instrumentsProp">-->
@@ -72,7 +72,7 @@
 <!--    </bean>-->
 
     <!--  3.1  наследование от общего предка с переопределением свойства-->
-    <bean id="baseSaxophonist" class="sia.example.contest.Instrumentalist"
+    <bean id="baseSaxophonist" class="sia.example.contest.performers.Instrumentalist"
           abstract="true">
         <property name="instrument" ref="saxophone"/>
         <property name="song" value="Jingle Bells"/>
@@ -88,26 +88,32 @@
     <bean id="basePerformer" abstract="true">
         <property name="song" value="Desolated"/>
     </bean>
-    <bean id="taylor" class="sia.example.contest.Vocalist"
+    <bean id="taylor" class="sia.example.contest.performers.Vocalist"
           parent="basePerformer"/>
-    <bean id="guitar" class="sia.example.contest.Guitar"/>
-    <bean id="steve" class="sia.example.contest.Instrumentalist"
+    <bean id="guitar" class="sia.example.contest.props.Guitar" scope="prototype"/>
+    <bean id="steve" class="sia.example.contest.performers.Instrumentalist"
           parent="basePerformer">
         <property name="instrument" ref="guitar"/>
     </bean>
 
-    <bean id="harry" class="sia.example.contest.Magician">
+    <bean id="harry" class="sia.example.contest.performers.Magician">
         <property name="magicBox" ref="magicBox"/>
         <property name="magicWords" value="Avada Kedavra"/>
     </bean>
 
-    <bean id="magicBox" class="sia.example.contest.MagicBoxImpl">
+    <bean id="magicBox" class="sia.example.contest.props.MagicBoxImpl">
         <replaced-method
             name="getContest"
             replacer="tigerReplacer"/>
     </bean>
 
-    <bean id="tigerReplacer" class="sia.example.contest.TigerReplacer"/>
+    <bean id="tigerReplacer" class="sia.example.contest.props.TigerReplacer"/>
+
+<!--    3.2.2 Внедрение через метод чтения. такие внедрение имеет смсл только при использовании scope prototype - кажыдй вызов будет возвращать различные уникальные экземпляры гитары-->
+    <bean id="stevie" class="sia.example.contest.performers.Instrumentalist">
+        <lookup-method name="getInstrument" bean="guitar"/>
+        <property name="song" value="Greensleeves"/>
+    </bean>
 
 
 

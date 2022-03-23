@@ -1,23 +1,27 @@
-package sia.example.contest;
+package sia.example.contest.performers;
 
-public class Instrumentalist implements Performer {
+import sia.example.contest.PerformanceException;
+import sia.example.contest.props.Instrument;
+
+public class DeprecatedInstrumentalist implements Performer {
+
 
     private String song;
     private Instrument instrument;
-    
-    public Instrumentalist() {
+
+    public DeprecatedInstrumentalist() {
     }
-    
+
     @Override
     public void perform() throws PerformanceException {
         System.out.println("Playing.." + song + ": ");
         instrument.play();
     }
-    
+
     public String screamSong() {
         return song;
     }
-    
+
 
     public void setSong(String song) {
         this.song = song;
@@ -30,4 +34,5 @@ public class Instrumentalist implements Performer {
     public void setInstrument(Instrument instrument) {
         this.instrument = instrument;
     }
+
 }

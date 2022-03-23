@@ -2,6 +2,7 @@ package sia.example.contest;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import sia.example.contest.performers.Performer;
 
 public class Program {
 

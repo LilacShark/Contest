@@ -1,4 +1,6 @@
-package sia.example.contest;
+package sia.example.contest.performers;
+
+import sia.example.contest.PerformanceException;
 
 public class Vocalist implements Performer {
 
